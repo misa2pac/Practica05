@@ -75,6 +75,7 @@ class MiVentana(object):
         self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setWordWrap(True)
         self.label_3.setObjectName(CfromUtf8("label_3"))
+# Se agregaron Labe's para contener las imagenes
         self.label_4 = QtGui.QLabel(Form)
         self.label_4.setGeometry(QtCore.QRect(140, 130, 40, 40))
         self.label_4.setText(CfromUtf8(""))
@@ -90,3 +91,20 @@ class MiVentana(object):
         self.label_6.setText(CfromUtf8(""))
         self.label_6.setPixmap(QtGui.QPixmap(CfromUtf8("Recursos/metro-morelos.png")))
         self.label_6.setObjectName(CfromUtf8("label_6"))
+# Agregamos el boton el cual al precionarlo nos dira cuantos dias faltan para el
+# proximo 15 de septiembre del siguiente año.
+		self.pushButton = QtGui.QPushButton(Form)
+        self.pushButton.setGeometry(QtCore.QRect(70, 330, 500, 61))
+        font = QtGui.QFont()
+        font.setFamily(CfromUtf8("Arial"))
+        font.setPointSize(22)
+        self.pushButton.setFont(font)
+        self.pushButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.pushButton.setAutoDefault(False)
+        self.pushButton.setDefault(False)
+        self.pushButton.setFlat(False)
+        self.pushButton.setObjectName(CfromUtf8("pushButton"))
+        self.retranslateUi(Form)
+        self.pushButton.setCheckable(True)
+        QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(CfromUtf8("clicked()")), self.btnstate)
+        QtCore.QMetaObject.connectSlotsByName(Form)
