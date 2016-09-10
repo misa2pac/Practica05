@@ -108,3 +108,16 @@ class MiVentana(object):
         self.pushButton.setCheckable(True)
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(CfromUtf8("clicked()")), self.btnstate)
         QtCore.QMetaObject.connectSlotsByName(Form)
+# Definimos la funcion que nos dira los dias que faltan para una fecha
+		def dias_transcurridos(self):
+			hoy = date.today()
+			quince_proximo = date(2017, 9, 15)
+			faltan = quince_proximo - hoy
+			return str(faltan.days)
+# Definimos la funcion para que el boton sea dinamico
+		def btnstate(self):
+			if self.pushButton.isChecked():
+				cadena = "Faltan " + self.dias_transcurridos() + " para el proximo 15 de Sep."
+				self.pushButton.setText(cadena)
+			else:
+				self.pushButton.setText("Aprietame")
