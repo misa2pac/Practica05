@@ -15,45 +15,45 @@ import sys
 # con la codificacion.
 
 try:
-	CfromUtf8 = QtCore.QString.fromUtf8
+    CfromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
-	def CfromUtf8(s):
-		return s
+    def CfromUtf8(s):
+        return s
 
 try:
-	Encoding = QtGui.QApplication.UnicodeUTF8
-	def Traslate(context, text, disambig):
-		return QtGui.QApplication.translate(context,text,disambig,Encoding)
+    Encoding = QtGui.QApplication.UnicodeUTF8
+    def Traslate(context, text, disambig):
+        return QtGui.QApplication.translate(context,text,disambig,Encoding)
 except AttributeError:
-	def Traslate(context, text, disambig):
-		return QtGui.QApplication.translate(context,text,disambig)
+    def Traslate(context, text, disambig):
+        return QtGui.QApplication.translate(context,text,disambig)
 
 # Agregamos una clase para la interfaz
 
 class MiVentana(object):
 # Definimos la funcion principal donde estaran las Label, imagenes, etc.
-	def ventana_Principal(self, Form):
-		Form.setObjectName(CfromUtf8("Form"))
-		Form.resize(640, 480)
-		Form.setMinimumSize(QtCore.QSize(640, 480))
-		Form.setMaximumSize(QtCore.QSize(640, 480))
-		icon = QtGui.QIcon()
-		icon.addPixmap(QtGui.QPixmap(CfromUtf8("Recursos/bandera.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-		Form.setWindowIcon(icon)
-		Form.setLayoutDirection(QtCore.Qt.LeftToRight)
+    def ventana_Principal(self, Form):
+        Form.setObjectName(CfromUtf8("Form"))
+        Form.resize(640, 480)
+        Form.setMinimumSize(QtCore.QSize(640, 480))
+        Form.setMaximumSize(QtCore.QSize(640, 480))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(CfromUtf8("Recursos/bandera.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Form.setWindowIcon(icon)
+        Form.setLayoutDirection(QtCore.Qt.LeftToRight)
 # Definimos las label's a usar para agregar el texto
-		self.label = QtGui.QLabel(Form)
-		self.label.setGeometry(QtCore.QRect(185, 140, 271, 31))
-		font = QtGui.QFont()
-		font.setFamily(CfromUtf8("Arial"))
-		font.setPointSize(18)
-		font.setItalic(False)
-		self.label.setFont(font)
-		self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-		self.label.setAlignment(QtCore.Qt.AlignCenter)
-		self.label.setWordWrap(True)
-		self.label.setObjectName(CfromUtf8("label"))
-		self.label_2 = QtGui.QLabel(Form)
+        self.label = QtGui.QLabel(Form)
+        self.label.setGeometry(QtCore.QRect(185, 140, 271, 31))
+        font = QtGui.QFont()
+        font.setFamily(CfromUtf8("Arial"))
+        font.setPointSize(18)
+        font.setItalic(False)
+        self.label.setFont(font)
+        self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setWordWrap(True)
+        self.label.setObjectName(CfromUtf8("label"))
+        self.label_2 = QtGui.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(180, 190, 181, 31))
         font = QtGui.QFont()
         font.setFamily(CfromUtf8("Arial"))
@@ -92,7 +92,7 @@ class MiVentana(object):
         self.label_6.setObjectName(CfromUtf8("label_6"))
 # Agregamos el boton el cual al precionarlo nos dira cuantos dias faltan para el
 # proximo 15 de septiembre del siguiente año.
-		self.pushButton = QtGui.QPushButton(Form)
+        self.pushButton = QtGui.QPushButton(Form)
         self.pushButton.setGeometry(QtCore.QRect(70, 330, 500, 61))
         font = QtGui.QFont()
         font.setFamily(CfromUtf8("Arial"))
@@ -108,20 +108,20 @@ class MiVentana(object):
         QtCore.QObject.connect(self.pushButton, QtCore.SIGNAL(CfromUtf8("clicked()")), self.btnstate)
         QtCore.QMetaObject.connectSlotsByName(Form)
 # Definimos la funcion que nos dira los dias que faltan para una fecha
-	def dias_transcurridos(self):
-		hoy = date.today()
-		quince_proximo = date(2017, 9, 15)
-		faltan = quince_proximo - hoy
-		return str(faltan.days)
+    def dias_transcurridos(self):
+        hoy = date.today()
+        quince_proximo = date(2017, 9, 15)
+        faltan = quince_proximo - hoy
+        return str(faltan.days)
 # Definimos la funcion para que el boton sea dinamico
-	def btnstate(self):
-		if self.pushButton.isChecked():
-			cadena = "Faltan " + self.dias_transcurridos() + " para el proximo 15 de Sep."
-			self.pushButton.setText(cadena)
-		else:
-			self.pushButton.setText("Aprietame")
+    def btnstate(self):
+        if self.pushButton.isChecked():
+            cadena = "Faltan " + self.dias_transcurridos() + " para el proximo 15 de Sep."
+            self.pushButton.setText(cadena)
+        else:
+            self.pushButton.setText("Aprietame")
 # Se agrega el texto a las label's
-	def retranslateUi(self, Form):
+    def retranslateUi(self, Form):
         Form.setWindowTitle(Traslate("Form", "¡Viva Mexico!", None))
         self.label.setText(Traslate("Form", "Miguel Hidalgo y Costilla", None))
         self.label_2.setText(Traslate("Form", "Ignacio Allende", None))
